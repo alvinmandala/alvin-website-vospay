@@ -112,7 +112,7 @@ const mobileStyle = StyleSheet.create({
     borderRadius: 20,
     margin: '50px 0 30px 0',
     paddingVertical: 5,
-    paddingHorizontal: 35,
+    paddingHorizontal: 20,
     marginTop: 40,
     marginBottom: 30,
     alignItems: 'center',

@@ -15,9 +15,9 @@ class ThirdPage extends Component<Props> {
   render() {
     let { windowWidth } = this.props
     let responsiveStyle
-    if (windowWidth < 817) {
+    if (windowWidth < 600) {
       responsiveStyle = mobileStyle
-    } else if (windowWidth < 1128) {
+    } else if (windowWidth < 1127) {
       responsiveStyle = tabletStyle
     } else {
       responsiveStyle = webStyle
@@ -111,26 +111,25 @@ const tabletStyle = StyleSheet.create({
   thirdPageStyling: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
   },
   headerWrapper: {
     paddingTop: 100,
     paddingBottom: 50,
   },
   headerText: {
-    fontSize: 40,
+    fontSize: 38,
     fontWeight: '800',
   },
   contentWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '60%',
+    width: '80%',
     flexWrap: 'wrap',
     flex: 1,
   },
   cardImageDefaultStyle: {
-    width: 70,
-    height: 70,
+    width: 65,
+    height: 65,
   },
   cardTextTitleDefaultStyle: {
     marginTop: 20,
@@ -141,12 +140,12 @@ const tabletStyle = StyleSheet.create({
     borderRadius: 20,
     paddingVertical: 10,
     textAlign: 'center',
-    fontSize: 14,
-    width: 245,
+    fontSize: 12,
+    width: 200,
   },
   cardTextContentDefaultStyle: {
-    width: 220,
-    fontSize: 14,
+    width: 150,
+    fontSize: 12,
     textAlign: 'center',
     lineHeight: 23,
   },
@@ -156,30 +155,30 @@ const mobileStyle = StyleSheet.create({
   thirdPageStyling: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 10,
+    height: '100%',
   },
   headerWrapper: {
-    marginTop: 120,
-    marginBottom: 50,
+    paddingTop: 100,
+    paddingBottom: 50,
   },
   headerText: {
-    fontSize: 24,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: '800',
   },
   contentWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '90%',
+    justifyContent: 'center',
+    width: '50%',
     flexWrap: 'wrap',
     flex: 1,
   },
   cardImageDefaultStyle: {
-    width: 60,
-    height: 60,
+    width: 65,
+    height: 65,
   },
   cardTextTitleDefaultStyle: {
     marginTop: 20,
-    marginBottom: 10,
+    marginBottom: 30,
     borderWidth: 1,
     borderColor: WHITE,
     borderStyle: 'solid',
@@ -187,14 +186,14 @@ const mobileStyle = StyleSheet.create({
     paddingVertical: 10,
     textAlign: 'center',
     fontSize: 12,
-    width: 190,
+    width: 200,
   },
   cardTextContentDefaultStyle: {
-    width: 170,
-    fontSize: 11,
+    width: 300,
+    fontSize: 12,
     textAlign: 'center',
     lineHeight: 23,
-    marginBottom: 20,
+    marginBottom: 40,
   },
 })
 

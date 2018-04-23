@@ -14,7 +14,14 @@ type Props = {
 class FourthPage extends Component<Props> {
   render() {
     let { windowWidth } = this.props
-    let responsiveStyle = windowWidth < 725 ? mobileStyle : webStyle
+    let responsiveStyle
+    if (windowWidth < 600) {
+      responsiveStyle = mobileStyle
+    } else if (windowWidth < 900) {
+      responsiveStyle = tabletStyle
+    } else {
+      responsiveStyle = webStyle
+    }
     return (
       <BigWrapper color={WHITE} customStyle={responsiveStyle.forthPageWrapper}>
         <View style={responsiveStyle.headerWrapper}>
@@ -123,6 +130,68 @@ const webStyle = StyleSheet.create({
   contentImageStyling: {
     width: 150,
     height: 75,
+  },
+})
+
+const tabletStyle = StyleSheet.create({
+  forthPageWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerText: {
+    fontSize: 47,
+    fontWeight: '600',
+    color: DARK_BLUE,
+    marginBottom: 50,
+  },
+  contentWrapper: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '80%',
+    flexWrap: 'wrap',
+  },
+  multiFinanceWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 50,
+  },
+  multiFinanceContentWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  onlinePartnerWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  onlinePartnerContentWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  contentHeaderText: {
+    color: DARK_BLUE,
+    fontSize: 23,
+    letterSpacing: 3,
+    fontWeight: '800',
+    paddingBottom: 20,
+  },
+  contentImageWrapper: {
+    borderWidth: 2,
+    borderColor: '#a5a5a5',
+    borderRadius: 10,
+    padding: 10,
+    marginHorizontal: 3,
+    marginBottom: 6,
+  },
+  contentImageStyling: {
+    width: 120,
+    height: 60,
   },
 })
 

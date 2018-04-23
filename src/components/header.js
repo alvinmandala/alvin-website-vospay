@@ -5,13 +5,28 @@ import { View, Image, StyleSheet } from 'react-native'
 import Text from '../generals/core-ui/Text.js'
 import UnorderedList from '../generals/core-ui/UnorderedList'
 import connect from '../generals/connect'
+import Button from '../generals/core-ui/Button'
 
 type Props = {
   windowWidth: number,
 }
-class Header extends Component<Props> {
+
+type State = {
+  isActiveMenu: boolean,
+}
+
+class Header extends Component<Props, State> {
+  state = {
+    isActiveMenu: false,
+  }
+
+  _onMenuToggle = () => {
+    this.setState({ isActiveMenu: !this.state.isActiveMenu })
+  }
+
   render() {
     let { windowWidth } = this.props
+    let { isActiveMenu } = this.state
     let responsiveStyle = windowWidth < 725 ? mobileStyle : webStyle
     return (
       <View style={responsiveStyle.headerWrapperStyle}>
@@ -23,8 +38,20 @@ class Header extends Component<Props> {
           <Text style={responsiveStyle.nameStyle}>VOSPAY</Text>
         </View>
         <View style={responsiveStyle.navListStyle}>
+          <Button
+            style={responsiveStyle.menuButton}
+            onMenuToggle={this._onMenuToggle}
+          >
+            <Text>MENU</Text>
+          </Button>
           <UnorderedList
-            ulStyle={responsiveStyle.ulStyle}
+            ulStyle={
+              windowWidth < 725
+                ? isActiveMenu
+                  ? mobileStyle.ulStyle
+                  : { display: 'none' }
+                : webStyle.ulStyle
+            }
             liStyle={responsiveStyle.liStyle}
             arrayContent={['TENTANG KAMI', 'CARA PAKAI', 'FAQ', 'HUBUNGI KAMI']}
           />
@@ -67,6 +94,9 @@ const webStyle = StyleSheet.create({
     flex: 0,
     justifyContent: 'center',
   },
+  menuButton: {
+    display: 'none',
+  },
   ulStyle: {},
   liStyle: {
     fontSize: 16,
@@ -103,13 +133,39 @@ const mobileStyle = StyleSheet.create({
     fontSize: 18,
   },
   navListStyle: {
-    flex: 0,
-    justifyContent: 'center',
+    position: 'absolute',
+    width: '100vw',
   },
-  ulStyle: {},
+  menuButton: {
+    marginVertical: 14,
+    marginHorizontal: 15,
+    borderWidth: 1,
+    borderColor: 'white',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 10,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+  ulStyle: {
+    position: 'absolute',
+    top: 70,
+    flexDirection: 'column',
+    padding: 0,
+    backgroundColor: 'grey',
+  },
   liStyle: {
     fontSize: 13,
-    padding: '25px 4px',
+    display: 'flex',
+    width: '100vw',
+    flexDirection: 'row',
     fontWeight: 'lighter',
+    height: 70,
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
+    borderBottomStyle: 'solid',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

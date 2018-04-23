@@ -15,7 +15,14 @@ class SecondPage extends Component<Props> {
   render() {
     let { cardImage, cardTitle, cardContent } = cardData
     let { windowWidth } = this.props
-    let responsiveStyle = windowWidth < 725 ? mobileStyle : webStyle
+    let responsiveStyle
+    if (windowWidth < 600) {
+      responsiveStyle = mobileStyle
+    } else if (windowWidth < 1267) {
+      responsiveStyle = tabletStyle
+    } else {
+      responsiveStyle = webStyle
+    }
     return (
       <BigWrapper color={WHITE} customStyle={responsiveStyle.secondPage}>
         <View style={responsiveStyle.headerWrapper}>
@@ -25,10 +32,10 @@ class SecondPage extends Component<Props> {
         </View>
         <View style={responsiveStyle.contentWrapper}>
           {cardTitle.map((item, index) => {
-            let link = ''
-            if (index === 0) {
-              link = <b>KLIK DI SINI</b>
-            }
+            // let link = ''
+            // if (index === 0) {
+            //   link = <b>KLIK DI SINI</b>
+            // }
             let arrow = index < 2 ? true : false
             return (
               <Card
@@ -45,7 +52,7 @@ class SecondPage extends Component<Props> {
                 </Text>
                 <Text style={responsiveStyle.cardTextContentDefaultStyle}>
                   {cardContent[index]}
-                  {link}
+                  {/* {link} */}
                 </Text>
               </Card>
             )
@@ -107,7 +114,7 @@ const webStyle = StyleSheet.create({
   },
 })
 
-const mobileStyle = StyleSheet.create({
+const tabletStyle = StyleSheet.create({
   secondPage: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -118,14 +125,14 @@ const mobileStyle = StyleSheet.create({
   },
   headerText: {
     color: DARK_BLUE,
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
-    width: 335,
+    width: 500,
   },
   contentWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '90%',
+    justifyContent: 'space-around',
+    width: '87%',
   },
   cardImageDefaultStyle: {
     width: 65,
@@ -133,7 +140,7 @@ const mobileStyle = StyleSheet.create({
   },
   cardTextTitleDefaultStyle: {
     color: DARK_BLUE,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '550',
     marginTop: 15,
     marginBottom: 30,
@@ -141,15 +148,66 @@ const mobileStyle = StyleSheet.create({
   },
   cardTextContentDefaultStyle: {
     color: DARK_BLUE,
-    width: 110,
+    width: 180,
     textAlign: 'center',
-    lineHeight: 20,
+    lineHeight: 23,
     fontSize: 12,
   },
   arrowImageStyling: {
     alignSelf: 'center',
-    marginBottom: 155,
-    width: 60,
+    justifyContent: 'center',
+    marginBottom: 80,
+    width: '90%',
+    height: 20,
+    marginHorizontal: 'auto',
+    display: 'none',
+  },
+})
+
+const mobileStyle = StyleSheet.create({
+  secondPage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -50,
+    height: '100vh',
+  },
+  headerWrapper: {
+    paddingBottom: 60,
+  },
+  headerText: {
+    color: DARK_BLUE,
+    fontSize: 15,
+    textAlign: 'center',
+    width: 335,
+  },
+  contentWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '95%',
+  },
+  cardImageDefaultStyle: {
+    width: 35,
+    height: 35,
+  },
+  cardTextTitleDefaultStyle: {
+    color: DARK_BLUE,
+    fontSize: 13,
+    fontWeight: '550',
+    marginTop: 15,
+    marginBottom: 30,
+    textAlign: 'center',
+  },
+  cardTextContentDefaultStyle: {
+    color: DARK_BLUE,
+    width: 90,
+    textAlign: 'center',
+    lineHeight: 20,
+    fontSize: 9,
+  },
+  arrowImageStyling: {
+    alignSelf: 'center',
+    marginBottom: 120,
+    width: 35,
     height: 20,
     marginRight: -90,
   },
@@ -163,7 +221,7 @@ let cardData = {
   ],
   cardTitle: ['Aktivasi', 'Beli', 'Bayar'],
   cardContent: [
-    'Aktivasi akun Vospay yang sudah diberikan fasilitas limit kredit \n \n Jika Anda belum aktivasi akun Vospay, ',
+    'Aktivasi akun Vospay yang sudah diberikan fasilitas limit kredit',
     'Checkout di merchant-merchant online partner dengan klik Vospay',
     'Pembayaran dilakukan langsung ke Multi-finance terkait sesuai pilihan cici-lan: 30 hari, 3, 6, 9, 12 bulan',
   ],

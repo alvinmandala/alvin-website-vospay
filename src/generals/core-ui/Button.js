@@ -8,14 +8,19 @@ import Text from './Text'
 type Props = {
   style?: number | Object,
   children?: mixed,
+  onMenuToggle?: () => void,
 }
 
 class Button extends Component<Props> {
   render() {
-    let { style, children } = this.props
+    let { style, children, onMenuToggle } = this.props
     style = typeof style === 'number' ? StyleSheet.flatten(style) : style
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          onMenuToggle ? onMenuToggle() : {}
+        }}
+      >
         <View
           style={{
             ...DEFAULT_BUTTON_STYLE,
@@ -33,10 +38,8 @@ export default Button
 
 const DEFAULT_BUTTON_STYLE = {
   backgroundColor: 'transparent',
-  paddingTop: 15,
-  paddingBottom: 15,
-  paddingLeft: 50,
-  paddingRight: 50,
+  paddingVertical: 15,
+  paddingHorizontal: 50,
   borderRadius: 30,
   borderWidth: 0,
 }

@@ -46,7 +46,7 @@ class UnorderedList extends Component<Props, State> {
           let onHoverStyle = {}
           if (index === this.state.onHoverIndex) {
             onHoverStyle = {
-              backgroundColor: 'rgba(0, 0, 0, 1)',
+              backgroundColor: '#3c3c3c',
               color: WHITE,
               cursor: 'pointer',
             }
@@ -68,9 +68,3 @@ class UnorderedList extends Component<Props, State> {
 }
 
 export default UnorderedList
-
-const DEFAULT_STYLE = {
-  color: WHITE,
-  fontSize: 16,
-  fontFamily: 'frutiger, sans-serif',
-}

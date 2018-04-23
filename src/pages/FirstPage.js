@@ -55,7 +55,7 @@ const mobileStyle = StyleSheet.create({
     zIndex: -1,
   },
   bigHeader: {
-    fontSize: 40,
+    fontSize: 30,
     margin: 25,
   },
 })
