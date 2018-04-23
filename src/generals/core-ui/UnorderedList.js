@@ -1,11 +1,12 @@
 // @flow
 import React, { Component } from 'react'
+import { StyleSheet } from 'react-native'
 import { WHITE, DARK_BLUE } from '../constants/color'
 
 type Props = {
-  ulStyle?: Object,
-  liStyle?: Object,
-  arrayContent: Array<any>,
+  ulStyle?: number | Object,
+  liStyle?: number | Object,
+  arrayContent: Array<mixed>,
 }
 
 type State = {
@@ -20,38 +21,42 @@ let DEFAULT_STYLE_FOR_UL = {
   margin: 0,
 }
 
-let DEFAULT_STYLE_FOR_LI = {
+const DEFAULT_STYLE_FOR_LI = {
   color: WHITE,
 }
 
 class UnorderedList extends Component<Props, State> {
-  // state = {
-  //   onHoverIndex: null,
-  // }
-  //
-  // _onHover = (index: number | null) => {
-  //   this.setState({ onHoverIndex: index })
-  // }
+  state = {
+    onHoverIndex: null,
+  }
+
+  _onHover = (index: number | null) => {
+    this.setState({ onHoverIndex: index })
+  }
 
   render() {
     let { ulStyle, liStyle, arrayContent } = this.props
+    ulStyle =
+      typeof ulStyle === 'number' ? StyleSheet.flatten(ulStyle) : ulStyle
+    liStyle =
+      typeof liStyle === 'number' ? StyleSheet.flatten(liStyle) : liStyle
     return (
       <ul style={{ ...DEFAULT_STYLE_FOR_UL, ...ulStyle }}>
         {arrayContent.map((item, index) => {
-          // let onHoverStyle
-          // if (index === this.state.onHoverIndex) {
-          //   onHoverStyle = {
-          //     backgroundColor: 'white',
-          //     color: DARK_BLUE,
-          //     cursor: 'pointer',
-          //   }
-          // }
+          let onHoverStyle = {}
+          if (index === this.state.onHoverIndex) {
+            onHoverStyle = {
+              backgroundColor: 'rgba(0, 0, 0, 1)',
+              color: WHITE,
+              cursor: 'pointer',
+            }
+          }
           return (
             <li
-              // onMouseEnter={() => this._onHover(index)}
-              // onMouseLeave={() => this._onHover(null)}
+              onMouseEnter={() => this._onHover(index)}
+              onMouseLeave={() => this._onHover(null)}
               key={index}
-              style={{ ...DEFAULT_STYLE_FOR_LI, ...liStyle }}
+              style={{ ...DEFAULT_STYLE_FOR_LI, ...liStyle, ...onHoverStyle }}
             >
               {item}
             </li>
@@ -63,3 +68,9 @@ class UnorderedList extends Component<Props, State> {
 }
 
 export default UnorderedList
+
+const DEFAULT_STYLE = {
+  color: WHITE,
+  fontSize: 16,
+  fontFamily: 'frutiger, sans-serif',
+}

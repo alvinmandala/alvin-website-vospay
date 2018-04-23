@@ -2,14 +2,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import FifthPage from '../pages/FifthPage'
 import './index.css'
 import { ScrollView, View } from 'react-native'
-import Header from '../components/header'
+import Header from '../components/Header'
 import FirstPage from '../pages/FirstPage'
 import SecondPage from '../pages/SecondPage'
 import ThirdPage from '../pages/ThirdPage'
 import FourthPage from '../pages/FourthPage'
+import FifthPage from '../pages/FifthPage'
+import Footer from '../components/Footer'
 
 const Layout = ({ children, data }: Object) => (
   <View
@@ -24,14 +25,14 @@ const Layout = ({ children, data }: Object) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-
+    <Header />
     <ScrollView>
-      <Header />
       <FirstPage />
       <SecondPage />
       <ThirdPage />
       <FourthPage />
-      <FifthPage />
+      {/* <FifthPage /> */}
+      <Footer />
     </ScrollView>
   </View>
 )

@@ -11,6 +11,7 @@ html {
 }
 body {
   position: absolute;
+  height: 100%;
   left: 0;
   top: 0;
   right: 0;
@@ -20,6 +21,13 @@ body {
   overflow: hidden;
   -webkit-touch-callout: none !important;
 }
+/*
+@font-face {
+  font-family: 'Frutiger';
+  src: url('../assets/fonts/Frutiger-Roman.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} */
 
 /* article,
 aside,

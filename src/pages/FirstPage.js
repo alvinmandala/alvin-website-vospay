@@ -1,29 +1,26 @@
 // @flow
 import React, { Component } from 'react'
 import Text from '../generals/core-ui/Text'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import LoginBox from '../components/LoginBox.js'
-import BGround from '../images/background1.jpg'
+import BGround from '../images/background-1.jpg'
+import BigWrapper from '../generals/core-ui/BigWrapper'
+import connect from '../generals/connect'
 
-let style = {
-  firstPage: {
-    height: 840,
-    display: 'flex',
-    alignItems: 'center',
-    backgroundImage: `url(${BGround})`,
-    top: -70,
-    paddingTop: 120,
-    zIndex: -1,
-  },
+type Props = {
+  windowWidth: number,
 }
-
-type Props = {}
 
 class FirstPage extends Component<Props> {
   render() {
+    let { windowWidth } = this.props
+    let responsiveStyle = windowWidth < 725 ? mobileStyle : webStyle
     return (
-      <View style={style.firstPage}>
-        <Text style={{ fontSize: 60, margin: 25 }}>
+      <BigWrapper
+        image={`url(${BGround})`}
+        customStyle={responsiveStyle.firstPage}
+      >
+        <Text style={responsiveStyle.bigHeader}>
           <b>Your Payment Hero</b>
         </Text>
         <Text style={{ fontSize: 14 }}>The Ultimate Digital Credit Card</Text>
@@ -31,9 +28,34 @@ class FirstPage extends Component<Props> {
         <Text style={{ fontSize: 14 }}>
           Belum aktivasi akun Vospay, <b>KLIK DI SINI</b>
         </Text>
-      </View>
+      </BigWrapper>
     )
   }
 }
 
-export default FirstPage
+export default connect(FirstPage)
+
+const webStyle = StyleSheet.create({
+  firstPage: {
+    alignItems: 'center',
+    paddingTop: 120,
+    zIndex: -1,
+    minHeight: '100%',
+  },
+  bigHeader: {
+    fontSize: 60,
+    margin: 25,
+  },
+})
+
+const mobileStyle = StyleSheet.create({
+  firstPage: {
+    alignItems: 'center',
+    paddingTop: 80,
+    zIndex: -1,
+  },
+  bigHeader: {
+    fontSize: 40,
+    margin: 25,
+  },
+})

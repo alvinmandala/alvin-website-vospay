@@ -1,82 +1,21 @@
 // @flow
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 import Card from '../components/Card'
 import Text from '../generals/core-ui/Text'
 import { WHITE, DARK_BLUE } from '../generals/constants/color'
+import backGround from '../images/background-2.jpg'
+import BigWrapper from '../generals/core-ui/BigWrapper'
 
 type Props = {}
-
-let style = {
-  fifthPageStyling: {
-    height: 830,
-    backgroundColor: DARK_BLUE,
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-}
-
-let bigCardData = {
-  image: [require('../images/tito.png'), require('../images/lina.png')],
-  name: ['TITO TAMBAYONG', 'LINA GEJALI'],
-  position: [
-    'Co-Founder, Chief Executive Officer',
-    'Co-Founder, Chief Operating Officer',
-  ],
-}
-
-let smallCardData = {
-  image: [
-    require('../images/abraham.png'),
-    require('../images/cleosent.png'),
-    require('../images/john.png'),
-    require('../images/fendi.png'),
-    require('../images/christopher.png'),
-    require('../images/teddy.png'),
-  ],
-  name: [
-    'ABRAHAM HIDAYAT',
-    'CLEOSENT RANDING',
-    'JOHN RASJID',
-    'FENDI SANTOSO',
-    'CHRISTOPHER MADIAM',
-    'TEDDY KOENTJORO',
-  ],
-  position: [
-    'Board Member',
-    'Board Member',
-    'Board Member',
-    'Board Member',
-    'Board Member',
-    'Board Member',
-  ],
-}
-
-let cardStyling = {
-  bigImageStyle: {
-    width: 150,
-    height: 150,
-  },
-  smallImageStyle: {
-    width: 120,
-    height: 120,
-    marginBottom: 10,
-  },
-  nameStyle: {
-    fontSize: 14,
-    letterSpacing: 1.5,
-    marginTop: 15,
-    marginBottom: 15,
-  },
-  positionStyle: {
-    fontSize: 15,
-  },
-}
 
 class FifthPage extends Component<Props> {
   render() {
     return (
-      <View style={style.fifthPageStyling}>
+      <BigWrapper
+        image={`url(${backGround})`}
+        customStyle={StyleSheet.flatten(styles.fifthPageStyling)}
+      >
         <Text
           style={{
             fontSize: 14.5,
@@ -104,13 +43,14 @@ class FifthPage extends Component<Props> {
           {bigCardData.image.map((item, index) => {
             let { image, name, position } = bigCardData
             return (
-              <Card>
-                <Image
-                  source={image[index]}
-                  style={cardStyling.bigImageStyle}
-                />
-                <Text style={cardStyling.nameStyle}>{name[index]}</Text>
-                <Text style={cardStyling.positionStyle}>{position[index]}</Text>
+              <Card key={index}>
+                <Image source={image[index]} style={styles.bigImageStyle} />
+                <Text style={StyleSheet.flatten(styles.nameStyle)}>
+                  {name[index]}
+                </Text>
+                <Text style={StyleSheet.flatten(styles.positionStyle)}>
+                  {position[index]}
+                </Text>
               </Card>
             )
           })}
@@ -125,21 +65,82 @@ class FifthPage extends Component<Props> {
           {smallCardData.image.map((item, index) => {
             let { image, name, position } = smallCardData
             return (
-              <Card>
-                <Image
-                  source={image[index]}
-                  style={cardStyling.smallImageStyle}
-                />
-                <Text style={cardStyling.nameStyle}>{name[index]}</Text>
-                <Text style={cardStyling.positionStyle}>{position[index]}</Text>
+              <Card key={index}>
+                <Image source={image[index]} style={styles.smallImageStyle} />
+                <Text style={StyleSheet.flatten(styles.nameStyle)}>
+                  {name[index]}
+                </Text>
+                <Text style={StyleSheet.flatten(styles.positionStyle)}>
+                  {position[index]}
+                </Text>
               </Card>
             )
           })}
         </View>
         <View />
-      </View>
+      </BigWrapper>
     )
   }
 }
 
 export default FifthPage
+
+const styles = StyleSheet.create({
+  fifthPageStyling: {
+    alignItems: 'center',
+  },
+  bigImageStyle: {
+    width: 150,
+    height: 150,
+  },
+  smallImageStyle: {
+    width: 120,
+    height: 120,
+    marginBottom: 10,
+  },
+  nameStyle: {
+    fontSize: 14,
+    letterSpacing: 1.5,
+    marginTop: 15,
+    marginBottom: 15,
+  },
+  positionStyle: {
+    fontSize: 15,
+  },
+})
+
+const bigCardData = {
+  image: [require('../images/five1.png'), require('../images/five2.png')],
+  name: ['TITO TAMBAYONG', 'LINA GEJALI'],
+  position: [
+    'Co-Founder, Chief Executive Officer',
+    'Co-Founder, Chief Operating Officer',
+  ],
+}
+
+const smallCardData = {
+  image: [
+    require('../images/five3.png'),
+    require('../images/five4.png'),
+    require('../images/five5.png'),
+    require('../images/five6.png'),
+    require('../images/five7.png'),
+    require('../images/five8.png'),
+  ],
+  name: [
+    'ABRAHAM HIDAYAT',
+    'CLEOSENT RANDING',
+    'JOHN RASJID',
+    'FENDI SANTOSO',
+    'CHRISTOPHER MADIAM',
+    'TEDDY KOENTJORO',
+  ],
+  position: [
+    'Board Member',
+    'Board Member',
+    'Board Member',
+    'Board Member',
+    'Board Member',
+    'Board Member',
+  ],
+}
